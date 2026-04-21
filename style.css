@@ -473,3 +473,61 @@ body {
         order: 1;
     }
 }
+ 
+  .bannerp {
+    padding-top: 50px;
+    max-width: 1100px;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+ 
+.banner{
+    background-color: #F4F6F7;
+}
+
+.regions {
+    padding: 80px 10%;
+    text-align: center;
+    background-color: #F4F6F7;
+}
+
+.regions-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.region-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.region-card:hover {
+    transform: translateY(-10px);
+}
+
+.region-card img {
+    width: 280px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 25px; /* Colțuri foarte rotunjite conform imaginii */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.region-card h3 {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #000;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.section-title{
+     font-size: 48.82px;
+    margin-bottom: 50px;
+}

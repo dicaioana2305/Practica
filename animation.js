@@ -87,3 +87,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Selectăm direct imaginea folosind clasa ei
+const bannerImg = document.querySelector('.bannerp'); 
+
+if (bannerImg) {
+    bannerImg.addEventListener('mousemove', (e) => {
+        const { offsetWidth: width, offsetHeight: height } = bannerImg;
+        const { offsetX: x, offsetY: y } = e;
+
+        // Efect de translație ușoară
+        const moveX = (x / width - 0.5) * 15;
+        const moveY = (y / height - 0.5) * 15;
+
+        bannerImg.style.transform = `scale(1.05) translate(${moveX}px, ${moveY}px)`;
+        bannerImg.style.transition = 'transform 0.1s ease-out'; // Mișcare fluidă
+    });
+
+    bannerImg.addEventListener('mouseleave', () => {
+        bannerImg.style.transform = 'scale(1) translate(0, 0)';
+        bannerImg.style.transition = 'transform 0.5s ease';
+    });
+}
