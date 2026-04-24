@@ -109,3 +109,91 @@ if (bannerImg) {
         bannerImg.style.transition = 'transform 0.5s ease';
     });
 }
+
+const dots = document.querySelectorAll('.dot');
+const items = document.querySelectorAll('.testimonial-item');
+
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        // Șterge clasa active de peste tot
+        dots.forEach(d => d.classList.remove('active'));
+        items.forEach(item => item.classList.remove('active'));
+
+        // Adaugă la cel pe care s-a dat click
+        dot.classList.add('active');
+        items[index].classList.add('active');
+    });
+});
+
+ document.querySelectorAll('.faq-question').forEach(item => {
+    item.addEventListener('click', () => {
+        const parent = item.parentElement;
+        parent.classList.toggle('active');
+    });
+});
+
+ 
+
+const form = document.getElementById('consultationForm');
+
+function setError(inputId, errId, show) {
+    const input = document.getElementById(inputId);
+    const err = document.getElementById(errId);
+
+    if (show) {
+        input.classList.add('invalid');
+        input.classList.remove('valid');
+        err.classList.add('visible');
+    } else {
+        input.classList.remove('invalid');
+        input.classList.add('valid');
+        err.classList.remove('visible');
+    }
+
+    return !show;
+}
+
+// Validare live la ieșire din câmp
+['nume', 'prenume', 'telefon', 'email'].forEach(id => {
+    document.getElementById(id).addEventListener('blur', function () {
+        validateField(id);
+    });
+});
+
+function validateField(id) {
+    const val = document.getElementById(id).value.trim();
+
+    if (id === 'nume') return setError('nume', 'err-nume', !val);
+    if (id === 'prenume') return setError('prenume', 'err-prenume', !val);
+    if (id === 'telefon') return setError('telefon', 'err-telefon', !/^\d{6,}$/.test(val));
+    if (id === 'email') return setError('email', 'err-email', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val));
+}
+
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const ok = ['nume', 'prenume', 'telefon', 'email']
+        .map(id => validateField(id))
+        .every(Boolean);
+
+    if (!ok) return;
+
+    const consultatii = JSON.parse(localStorage.getItem('consultatii') || '[]');
+
+    consultatii.push({
+        nume: document.getElementById('nume').value,
+        prenume: document.getElementById('prenume').value,
+        telefon: document.getElementById('telefon').value,
+        email: document.getElementById('email').value,
+        data: new Date().toLocaleString()
+    });
+
+    localStorage.setItem('consultatii', JSON.stringify(consultatii));
+
+    const json = JSON.stringify(consultatii, null, 4);
+
+    const a = document.createElement("a");
+    a.href = "data:text/json;charset=utf-8," + encodeURIComponent(json);
+    a.download = "consultatii.json";
+    a.click();
+});

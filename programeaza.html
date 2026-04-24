@@ -16,10 +16,10 @@
         </div>
         <nav class="nav-links">
             <a href="index.html">Acasă</a>
-            <a href="#">Apartamente</a>
-            <a href="#">Case</a>
-            <a href="#">Penthouse-uri</a>
-            <a href="#">Facilități</a>
+            <a href="apartamente.html">Apartamente</a>
+            <a href="case.html">Case</a>
+            <a href="penthousuri.html">Penthouse-uri</a>
+            <a href="facilitati.html">Facilități</a>
         </nav>
         <button class="btn btn-primary nav-btn">Programează o consultație</button>
     </header>
@@ -44,21 +44,30 @@
         <div class="consultation-right">
             <h2>Programează o consultație</h2>
 
-            <form class="consultation-form">
-                <label>Nume</label>
-                <input type="text">
+            <form class="consultation-form" id="consultationForm" novalidate>
 
-                <label>Prenume</label>
-                <input type="text">
+                        <label for="nume">Nume</label>
+                        <input type="text" id="nume" placeholder="ex: Popescu">
+                        <span class="field-error" id="err-nume">Câmpul Nume nu poate fi gol.</span>
 
-                <label>Nr de telefon</label>
-                <input type="text" class="short">
+                        <label for="prenume">Prenume</label>
+                        <input type="text" id="prenume" placeholder="ex: Ion">
+                        <span class="field-error" id="err-prenume">Câmpul Prenume nu poate fi gol.</span>
 
-                <label>Email</label>
-                <input type="email">
+                        <label for="telefon">Nr de telefon</label>
+                        <input type="text" id="telefon" class="short" placeholder="ex: 069123456">
+                        <span class="field-error" id="err-telefon">Introduceți un număr valid (doar cifre).</span>
 
-                <button type="submit">Trimite</button>
-            </form>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="ex: ion@email.com">
+                        <span class="field-error" id="err-email">Introduceți un email valid.</span>
+
+                        <button type="submit">Trimite</button>
+
+                        <div class="success-msg" id="successMsg">
+                            ✓ Mulțumim! Vă vom contacta în cel mai scurt timp.
+                        </div>
+                    </form>
         </div>
 
     </div>
